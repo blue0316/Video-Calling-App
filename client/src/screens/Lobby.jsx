@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 
 
 export default function Lobby() {
@@ -6,12 +6,19 @@ export default function Lobby() {
   const [email,setEmail] = useState('');
   const [room,setRoom] = useState('');
 
+  const handleSubmitForm = useCallback((e)=> {
+    e.preventDefault();
+    console.log({
+      email,
+      room
+    });
+  })
 
   return (
     <div>
       <h1>Lobby</h1>
 
-      <form>
+      <form onSubmit={handleSubmitForm}>
         <label htmlFor="email">Email Id</label>
         <input type='email' style={{display:"block"}}
         value={email} onChange={(e)=>setEmail(e.target.value)}/>
